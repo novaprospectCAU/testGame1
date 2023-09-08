@@ -1,9 +1,9 @@
 let ghostX = 4;
 let ghostY = 6;
 
-let before = [ghostX, ghostY];
+export let before = [ghostX, ghostY];
 
-const ai_move = () => {
+export const ai_move = () => {
     while(true) {
         let nextX = 0;
         let nextY = 0;
@@ -28,5 +28,4 @@ const ai_move = () => {
         ghostX += nextX;
         ghostY += nextY;
     }
-
 }
