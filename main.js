@@ -1,4 +1,5 @@
 import { CANVAS_HEIGHT, CANVAS_WIDTH } from "./screen.js";
+import { Player } from "./game/player.js";
 
 const canvas = document.querySelector("#game_canvas");
 
