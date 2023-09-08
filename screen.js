@@ -1,6 +1,6 @@
 //canvas size
-export const CANVAS_WIDTH = 960;
-export const CANVAS_HEIGHT = 540;
+export const CANVAS_WIDTH = 640;
+export const CANVAS_HEIGHT = 380;
 
 //animation tick
 //animation tick is equal to real tick yet.
