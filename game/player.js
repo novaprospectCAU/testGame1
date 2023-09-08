@@ -5,25 +5,24 @@ export class Player {
         this.X = posX;
         this.Y = posY;
         this.status = "stop";
-    }
-    updatePosition(x, y) {
-        if (this.X < x) {
-            this.status = "right";
-        }
-        else if (this.X > x) {
-            this.status = "left";
-        }
-        else if (this.Y < y) {
-            this.status = "down";
-        }
-        else if (this.Y > y) {
-            this.status = "up";
-        }
-        else {
-            console.error("player is about to move to unexpected place.");
-            return ;
-        }
-        this.X = x;
-        this.Y = y;
+        window.addEventListener("keydown", (event) => {
+            let key = event.key;
+            switch (key) {
+                case "ArrowDown" :
+                    this.status = "down";
+                    break;
+                case "ArrowUp" :
+                    this.status = "up";
+                    break;
+                case "ArrowLeft" :
+                    this.status = "left";
+                    break;
+                case "ArrowRight" :
+                    this.status = "right";
+                    break;
+                default :
+            }
+            event.preventDefault();
+        })
     }
 }
