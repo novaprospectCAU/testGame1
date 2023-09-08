@@ -1,4 +1,6 @@
 export class Player {
+    HIT_WIDTH = 20;
+    HIT_HEIGHT = 20;
     constructor(posX = 5, posY = 8) {
         this.X = posX;
         this.Y = posY;
