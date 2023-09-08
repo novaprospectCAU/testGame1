@@ -1,27 +1,27 @@
 export class Player {
     constructor(posX = 5, posY = 8) {
-        this.playerX = posX;
-        this.playerY = posY;
+        this.X = posX;
+        this.Y = posY;
         this.status = "stop";
     }
     updatePosition(x, y) {
-        if (this.playerX < x) {
+        if (this.X < x) {
             this.status = "right";
         }
-        else if (this.playerX > x) {
+        else if (this.X > x) {
             this.status = "left";
         }
-        else if (this.playerY < y) {
+        else if (this.Y < y) {
             this.status = "down";
         }
-        else if (this.playerY > y) {
+        else if (this.Y > y) {
             this.status = "up";
         }
         else {
             console.error("player is about to move to unexpected place.");
             return ;
         }
-        this.playerX = x;
-        this.playerY = y;
+        this.X = x;
+        this.Y = y;
     }
 }
