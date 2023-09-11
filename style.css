@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+}
+
+#main {
+    background-color: black;
+    width: 100vw;
+    height: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game_canvas {
+    border: 1px solid blue;
+    background-color: black;
+    user-select: none;
+}
