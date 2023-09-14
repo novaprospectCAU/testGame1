@@ -1,7 +1,7 @@
 import { CANVAS_HEIGHT, CANVAS_WIDTH, ANIMATION_TICK } from "./screen.js";
 import { Player } from "./game/player.js";
 import { Enemy } from "./game/enemy.js";
-import { isColliding, update } from "./utils.js";
+import { isColliding } from "./utils.js";
 import { map, wallList } from "./game/map.js";
 
 const canvas = document.querySelector("#game_canvas");
@@ -43,7 +43,6 @@ export let pink = new Enemy(
 );
 
 function gameLoop() {
-  update(frameCount);
   player.update();
   cyan.update();
   orange.update();
