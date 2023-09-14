@@ -63,9 +63,7 @@ export function isCollidingWall(target) {
       for (let gridRight = 1; gridRight < map[0].length; gridRight++) {
         if (targetRight < gridRight * (CANVAS_HEIGHT / map.length)) {
           if (
-            map[Math.floor(target.Y / (CANVAS_HEIGHT / map.length))][
-              gridRight - 1
-            ] === 0 &&
+            map[target.Y / (CANVAS_HEIGHT / map.length)][gridRight - 1] === 0 &&
             targetRight === (gridRight - 1) * (CANVAS_HEIGHT / map.length)
           ) {
             return true;
@@ -76,8 +74,4 @@ export function isCollidingWall(target) {
     default:
       return new Error("unacceptable movement!!!");
   }
-}
-
-export function update(frameCount) {
-  frameCount++;
 }
