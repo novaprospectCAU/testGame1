@@ -2,6 +2,9 @@ import { CANVAS_WIDTH, CANVAS_HEIGHT } from "../screen.js";
 
 export let map = [];
 
+const coinImg = new Image();
+coinImg.src = "./assets/pacMan2.png";
+
 //0 wall
 //1 ghost zone (not opened yet -> if open it turns into 2)
 //2 2way hallway
@@ -73,7 +76,7 @@ for (let y = 0; y < map.length; y++) {
 //   }
 // }
 
-// const coinDelete = (playerX, playerY) => {
+// export function coinDelete(playerX, playerY) {
 //   coinMap[playerY][playerX] = 0;
 //   coinSum -= 1;
 //   if (coinSum === 0) {
@@ -81,6 +84,9 @@ for (let y = 0; y < map.length; y++) {
 //   }
 // };
 
+// export coinCollect(player) {
+//   if ()
+// }
 // x
 // 11 + 2
 // y

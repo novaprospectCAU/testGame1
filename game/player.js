@@ -2,13 +2,19 @@ import { CANVAS_WIDTH, CANVAS_HEIGHT } from "../screen.js";
 import { map } from "./map.js";
 import { isCollidingWall } from "../utils.js";
 
+const pacManImg0 = new Image();
+pacManImg0.src = "./assets/pacMan0.png";
 const pacManImg1 = new Image();
 pacManImg1.src = "./assets/pacMan1.png";
 const pacManImg2 = new Image();
 pacManImg2.src = "./assets/pacMan2.png";
+const pacManImg3 = new Image();
+pacManImg3.src = "./assets/pacMan3.png";
+const pacManImg4 = new Image();
+pacManImg4.src = "./assets/pacMan4.png";
 
-await pacManImg1.decode();
-await pacManImg2.decode();
+// await pacManImg1.decode();
+// await pacManImg2.decode();
 
 const pacManImages = [pacManImg1, pacManImg2];
 
@@ -23,20 +29,25 @@ export class Player {
   ) {
     this.X = posX;
     this.Y = posY;
+    this.angle = 0;
     this.direction = "stop";
     window.addEventListener("keydown", (event) => {
       let key = event.key;
       switch (key) {
         case "ArrowDown":
+          this.direction = Math.PI / 2;
           this.direction = "down";
           break;
         case "ArrowUp":
+          this.direction = (3 * Math.PI) / 2;
           this.direction = "up";
           break;
         case "ArrowLeft":
+          this.direction = Math.PI;
           this.direction = "left";
           break;
         case "ArrowRight":
+          this.direction = 0;
           this.direction = "right";
           break;
         default:
@@ -62,18 +73,38 @@ export class Player {
         default:
           break;
       }
-    } else {
-      this.direction = "stop";
     }
   }
   draw(context, frameCount) {
-    const currentImg = frameCount % 2 === 0 ? pacManImg1 : pacManImg2;
-    context.drawImage(
-      currentImg,
-      this.X - this.IMG_WIDTH / 2,
-      this.Y - this.IMG_HEIGHT / 2,
-      this.IMG_WIDTH,
-      this.IMG_HEIGHT
-    );
+    let currentImg = "";
+    if (frameCount % 2 === 1) {
+      currentImg = pacManImg0;
+      context.drawImage(
+        currentImg,
+        this.X - this.IMG_WIDTH / 2,
+        this.Y - this.IMG_HEIGHT / 2,
+        this.IMG_WIDTH,
+        this.IMG_HEIGHT
+      );
+    } else {
+      if (this.direction === "up") {
+        currentImg = pacManImg3;
+      } else if (this.direction === "down") {
+        currentImg = pacManImg4;
+      } else if (this.direction === "left") {
+        currentImg = pacManImg1;
+      } else if (this.direction === "right") {
+        currentImg = pacManImg2;
+      } else {
+        currentImg = pacManImg2;
+      }
+      context.drawImage(
+        currentImg,
+        this.X - (1.3 * this.IMG_WIDTH) / 2,
+        this.Y - (0.78 * this.IMG_HEIGHT) / 2,
+        this.IMG_WIDTH * 1.3,
+        this.IMG_HEIGHT * 0.75
+      );
+    }
   }
 }
