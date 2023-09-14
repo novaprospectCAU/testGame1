@@ -111,11 +111,11 @@ const ghostImages = [cyanImages, orangeImages, redImages, pinkImages];
 export class Enemy {
   HIT_WIDTH = CANVAS_WIDTH / map[0].length; //HIT_WIDTH and HIT_HEIGHT set same as its size. -> fix sometime
   HIT_HEIGHT = CANVAS_HEIGHT / map.length;
-  IMG_WIDTH = CANVAS_WIDTH / map[0].length;
-  IMG_HEIGHT = CANVAS_HEIGHT / map.length;
+  IMG_WIDTH = (2.5 * CANVAS_WIDTH) / map[0].length;
+  IMG_HEIGHT = (2.5 * CANVAS_HEIGHT) / map.length;
   constructor(
-    posX = (4 * CANVAS_WIDTH) / map[0].length,
-    posY = (6 * CANVAS_HEIGHT) / map.length,
+    posX = (4 * CANVAS_WIDTH) / map[0].length + this.IMG_WIDTH / 5,
+    posY = (6 * CANVAS_HEIGHT) / map.length + this.IMG_HEIGHT / 5,
     color
   ) {
     this.X = posX;
@@ -123,10 +123,6 @@ export class Enemy {
     this.color = color; //color should be one of 0 to 3 (0:cyan, 1:orange, 2:red, 3:pink)
     this.status = "ghost";
     this.direction = Math.random > 0.5 ? "up" : "down"; //for the first time ghosts should move differently from each other
-  }
-  updatePosition(x, y) {
-    this.X = x;
-    this.Y = y;
   }
   draw(context, frameCount) {
     const currentImg =
@@ -157,6 +153,9 @@ export class Enemy {
         default:
           break;
       }
+    } else {
+      /*asdfasdfasdfasdfasdfasdf*/
+      ai_move(this);
     }
   }
   draw(context) {

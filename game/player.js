@@ -13,13 +13,13 @@ await pacManImg2.decode();
 const pacManImages = [pacManImg1, pacManImg2];
 
 export class Player {
-  HIT_WIDTH = CANVAS_WIDTH / map[0].length; //HIT_WIDTH and HIT_HEIGHT set same as its size. -> fix sometime
-  HIT_HEIGHT = CANVAS_HEIGHT / map.length;
-  IMG_WIDTH = CANVAS_WIDTH / map[0].length;
-  IMG_HEIGHT = CANVAS_HEIGHT / map.length;
+  HIT_WIDTH = (0.8 * CANVAS_WIDTH) / map[0].length; //HIT_WIDTH and HIT_HEIGHT set same as its size. -> fix sometime
+  HIT_HEIGHT = (0.8 * CANVAS_HEIGHT) / map.length;
+  IMG_WIDTH = (2.5 * CANVAS_WIDTH) / map[0].length;
+  IMG_HEIGHT = (2.5 * CANVAS_HEIGHT) / map.length;
   constructor(
-    posX = (5 * CANVAS_WIDTH) / map[0].length,
-    posY = (8 * CANVAS_HEIGHT) / map.length
+    posX = (5 * CANVAS_WIDTH) / map[0].length + this.IMG_WIDTH / 5,
+    posY = (8 * CANVAS_HEIGHT) / map.length + this.IMG_HEIGHT / 5
   ) {
     this.X = posX;
     this.Y = posY;
@@ -62,6 +62,8 @@ export class Player {
         default:
           break;
       }
+    } else {
+      this.direction = "stop";
     }
   }
   draw(context, frameCount) {

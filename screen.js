@@ -1,8 +1,8 @@
 //this file only contains canvas-related const values
 
 //canvas size
-export const CANVAS_WIDTH = 960;
-export const CANVAS_HEIGHT = 540;
+export const CANVAS_WIDTH = 650;
+export const CANVAS_HEIGHT = 640;
 
 //animation tick
 //animation tick is equal to real tick yet.

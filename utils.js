@@ -3,8 +3,8 @@ import { map } from "./game/map.js";
 
 export function isColliding(player, enemy) {
   if (
-    Math.abs(player.X - enemy.X) >= player.HIT_WIDTH + enemy.HIT_WIDTH &&
-    Math.abs(player.Y - enemy.Y) >= player.HIT_HEIGHT + enemy.HIT_HEIGHT
+    Math.abs(player.X - enemy.X) < player.HIT_WIDTH / 2 + enemy.HIT_WIDTH / 2 &&
+    Math.abs(player.Y - enemy.Y) < player.HIT_HEIGHT / 2 + enemy.HIT_HEIGHT / 2
   ) {
     return true;
   }

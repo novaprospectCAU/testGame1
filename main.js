@@ -2,7 +2,7 @@ import { CANVAS_HEIGHT, CANVAS_WIDTH, ANIMATION_TICK } from "./screen.js";
 import { Player } from "./game/player.js";
 import { Enemy } from "./game/enemy.js";
 import { isColliding, update } from "./utils.js";
-import { map } from "./game/map.js";
+import { map, wallList } from "./game/map.js";
 
 const canvas = document.querySelector("#game_canvas");
 
@@ -13,25 +13,32 @@ const context = canvas.getContext("2d");
 
 let frameCount = 0;
 
+console.log("CANVAS_WIDTH = %d", CANVAS_WIDTH);
+console.log("CANVAS_HEIGHT = %d", CANVAS_HEIGHT);
+console.log("width grid = %d", map[0].length);
+console.log("height grid = %d", map.length);
+console.log("width per a block = %d", CANVAS_WIDTH / map[0].length);
+console.log("height per a block = %d", CANVAS_HEIGHT / map.length);
+
 export let player = new Player();
 export let cyan = new Enemy(
-  (3 * CANVAS_WIDTH) / map[0].length,
-  (5 * CANVAS_WIDTH) / map.length,
+  (3 * CANVAS_WIDTH) / map[0].length + CANVAS_WIDTH / map[0].length / 2,
+  (5 * CANVAS_WIDTH) / map.length + CANVAS_HEIGHT / map.length / 2,
   0
 );
 export let orange = new Enemy(
-  (3 * CANVAS_WIDTH) / map[0].length,
-  (4 * CANVAS_WIDTH) / map.length,
+  (3 * CANVAS_WIDTH) / map[0].length + CANVAS_WIDTH / map[0].length / 2,
+  (4 * CANVAS_WIDTH) / map.length + CANVAS_HEIGHT / map.length / 2,
   1
 );
 export let red = new Enemy(
-  (2 * CANVAS_WIDTH) / map[0].length,
-  (4 * CANVAS_WIDTH) / map.length,
+  (2 * CANVAS_WIDTH) / map[0].length + CANVAS_WIDTH / map[0].length / 2,
+  (4 * CANVAS_WIDTH) / map.length + CANVAS_HEIGHT / map.length / 2,
   2
 );
 export let pink = new Enemy(
-  (2 * CANVAS_WIDTH) / map[0].length,
-  (5 * CANVAS_WIDTH) / map.length,
+  (2 * CANVAS_WIDTH) / map[0].length + CANVAS_WIDTH / map[0].length / 2,
+  (5 * CANVAS_WIDTH) / map.length + CANVAS_HEIGHT / map.length / 2,
   3
 );
 
@@ -63,11 +70,16 @@ function gameLoop() {
 
   context.clearRect(0, 0, canvas.width, canvas.height);
 
+  for (let y = 0; y < wallList.length; y++) {
+    for (let x = 0; x < wallList[0].length; x++) {
+      wallList[y][x].draw(context);
+    }
+  }
   player.draw(context, frameCount);
-  cyan.draw(context, frameCount);
-  orange.draw(context, frameCount);
-  red.draw(context, frameCount);
-  pink.draw(context, frameCount);
+  cyan.draw(context);
+  orange.draw(context);
+  red.draw(context);
+  pink.draw(context);
 
   frameCount++;
 
