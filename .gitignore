@@ -1,0 +1,6 @@
+assets/*.png
+assets/*
+*/*.jpg
+*/*.png
+*/*.jpeg
+*/*.svg
