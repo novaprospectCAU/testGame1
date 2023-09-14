@@ -1,3 +1,5 @@
+//this file only contains canvas-related const values
+
 //canvas size
 export const CANVAS_WIDTH = 640;
 export const CANVAS_HEIGHT = 380;
