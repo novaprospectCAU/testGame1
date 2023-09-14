@@ -12,63 +12,47 @@ export function isColliding(player, enemy) {
 }
 
 export function isCollidingWall(target) {
+  const blockWidth = CANVAS_WIDTH / map[0].length;
+  const blockHeight = CANVAS_HEIGHT / map.length;
   switch (target.direction) {
     case "up":
-      const targetTop = target.Y - target.HIT_HEIGHT / 2;
-      for (let gridTop = 1; gridTop < map.length; gridTop++) {
-        if (targetTop < gridTop * (CANVAS_HEIGHT / map.length)) {
-          if (
-            map[gridTop - 1][
-              Math.floor(target.X / (CANVAS_WIDTH / map[0].length))
-            ] === 0 &&
-            targetTop === (gridTop - 1) * (CANVAS_HEIGHT / map.length)
-          ) {
-            return true;
-          }
-        }
+      const frontY = Math.floor(target.Y / blockHeight) * blockHeight;
+      if (
+        target.Y - frontY <= target.HIT_HEIGHT / 2 &&
+        map[frontY / blockHeight - 1][Math.floor(target.X / blockWidth)] % 5 ===
+          0
+      ) {
+        return true;
       }
       return false;
     case "down":
-      const targetBottom = target.Y + target.HIT_HEIGHT / 2;
-      for (let gridBottom = 1; gridBottom < map.length; gridBottom++) {
-        if (targetBottom < gridBottom * (CANVAS_HEIGHT / map.length)) {
-          if (
-            map[gridBottom - 1][
-              Math.floor(target.X / (CANVAS_WIDTH / map[0].length))
-            ] === 0 &&
-            targetBottom === (gridBottom - 1) * (CANVAS_HEIGHT / map.length)
-          ) {
-            return true;
-          }
-        }
+      const backY = Math.ceil(target.Y / blockHeight) * blockHeight;
+      if (
+        backY - target.Y <= target.HIT_HEIGHT / 2 &&
+        map[backY / blockHeight][Math.floor(target.X / blockWidth)] % 5 === 0
+      ) {
+        return true;
       }
       return false;
+    //
     case "left":
-      const targetLeft = target.X - target.HIT_WIDTH / 2;
-      for (let gridLeft = 1; gridLeft < map[0].length; gridLeft++) {
-        if (targetLeft < gridLeft * (CANVAS_HEIGHT / map.length)) {
-          if (
-            map[Math.floor(target.Y / (CANVAS_HEIGHT / map.length))][
-              gridLeft - 1
-            ] &&
-            targetLeft === (gridLeft - 1) * (CANVAS_HEIGHT / map.length)
-          ) {
-            return true;
-          }
-        }
+      const frontX = Math.floor(target.X / blockWidth) * blockWidth;
+      if (
+        target.X - frontX <= target.HIT_WIDTH / 2 &&
+        map[Math.floor(target.Y / blockHeight)][frontX / blockWidth - 1] % 5 ===
+          0
+      ) {
+        return true;
       }
       return false;
+
     case "right":
-      const targetRight = target.X + target.HIT_WIDTH / 2;
-      for (let gridRight = 1; gridRight < map[0].length; gridRight++) {
-        if (targetRight < gridRight * (CANVAS_HEIGHT / map.length)) {
-          if (
-            map[target.Y / (CANVAS_HEIGHT / map.length)][gridRight - 1] === 0 &&
-            targetRight === (gridRight - 1) * (CANVAS_HEIGHT / map.length)
-          ) {
-            return true;
-          }
-        }
+      const backX = Math.ceil(target.X / blockWidth) * blockWidth;
+      if (
+        backX - target.X <= target.HIT_WIDTH / 2 &&
+        map[Math.floor(target.Y / blockHeight)][backX / blockWidth] % 5 === 0
+      ) {
+        return true;
       }
       return false;
     default:

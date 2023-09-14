@@ -122,7 +122,7 @@ export class Enemy {
     this.Y = posY;
     this.color = color; //color should be one of 0 to 3 (0:cyan, 1:orange, 2:red, 3:pink)
     this.status = "ghost";
-    this.direction = Math.random > 0.5 ? "up" : "down"; //for the first time ghosts should move differently from each other
+    this.direction = Math.random() > 0.5 ? "up" : "down"; //for the first time ghosts should move differently from each other
   }
   draw(context, frameCount) {
     const currentImg =
@@ -165,16 +165,16 @@ export class Enemy {
     } else if (this.direction === "down") {
       currentImg = ghostImages[this.color][3];
     } else if (this.direction === "left") {
-      currentImg = ghostImages[this.color][1];
-    } else {
       currentImg = ghostImages[this.color][0];
+    } else {
+      currentImg = ghostImages[this.color][1];
     }
     context.drawImage(
       currentImg,
-      this.X - this.IMG_WIDTH / 2,
-      this.Y - this.IMG_HEIGHT / 2,
-      this.IMG_WIDTH,
-      this.IMG_HEIGHT
+      this.X - (1.3 * this.IMG_WIDTH) / 2,
+      this.Y - (0.7 * this.IMG_HEIGHT) / 2,
+      this.IMG_WIDTH * 1.3,
+      this.IMG_HEIGHT * 0.75
     );
   }
 }
