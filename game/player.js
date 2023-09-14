@@ -3,9 +3,9 @@ import { map } from "./map.js";
 import { isCollidingWall } from "../utils.js";
 
 const pacManImg1 = new Image();
-pacManImg1.src = "../assets/pacMan1.png";
+pacManImg1.src = "./assets/pacMan1.png";
 const pacManImg2 = new Image();
-pacManImg2.src = "../assets/pacMan2.png";
+pacManImg2.src = "./assets/pacMan2.png";
 
 await pacManImg1.decode();
 await pacManImg2.decode();
@@ -15,6 +15,8 @@ const pacManImages = [pacManImg1, pacManImg2];
 export class Player {
   HIT_WIDTH = CANVAS_WIDTH / map[0].length; //HIT_WIDTH and HIT_HEIGHT set same as its size. -> fix sometime
   HIT_HEIGHT = CANVAS_HEIGHT / map.length;
+  IMG_WIDTH = CANVAS_WIDTH / map[0].length;
+  IMG_HEIGHT = CANVAS_HEIGHT / map.length;
   constructor(
     posX = (5 * CANVAS_WIDTH) / map[0].length,
     posY = (8 * CANVAS_HEIGHT) / map.length
@@ -61,5 +63,15 @@ export class Player {
           break;
       }
     }
+  }
+  draw(context, frameCount) {
+    const currentImg = frameCount % 2 === 0 ? pacManImg1 : pacManImg2;
+    context.drawImage(
+      currentImg,
+      this.X - this.IMG_WIDTH / 2,
+      this.Y - this.IMG_HEIGHT / 2,
+      this.IMG_WIDTH,
+      this.IMG_HEIGHT
+    );
   }
 }
