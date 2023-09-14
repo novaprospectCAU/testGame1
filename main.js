@@ -1,6 +1,7 @@
 import { CANVAS_HEIGHT, CANVAS_WIDTH, ANIMATION_TICK } from "./screen.js";
 import { Player } from "./game/player.js";
 import { Enemy } from "./game/enemy.js";
+import { isColliding } from "./utils.js";
 
 const canvas = document.querySelector("#game_canvas");
 

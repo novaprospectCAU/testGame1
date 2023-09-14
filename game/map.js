@@ -44,7 +44,7 @@ for (let y = 1; y < 9; y++) {
   }
 }
 
-coinDelete = (playerX, playerY) => {
+const coinDelete = (playerX, playerY) => {
   coinMap[playerY][playerX] = 0;
   coinSum -= 1;
   if (coinSum === 0) {

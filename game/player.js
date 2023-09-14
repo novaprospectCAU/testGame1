@@ -1,5 +1,6 @@
 import { CANVAS_WIDTH, CANVAS_HEIGHT } from "../screen.js";
 import { map } from "./map.js";
+import { isCollidingWall } from "../utils.js";
 
 const pacManImg1 = new Image();
 pacManImg1.src = "../assets/pacMan1.png";
@@ -12,9 +13,12 @@ await pacManImg2.decode();
 const pacManImages = [pacManImg1, pacManImg2];
 
 export class Player {
-  HIT_WIDTH = CANVAS_WIDTH / map[0].length;
+  HIT_WIDTH = CANVAS_WIDTH / map[0].length; //HIT_WIDTH and HIT_HEIGHT set same as its size. -> fix sometime
   HIT_HEIGHT = CANVAS_HEIGHT / map.length;
-  constructor(posX = 5, posY = 8) {
+  constructor(
+    posX = (5 * CANVAS_WIDTH) / map[0].length,
+    posY = (8 * CANVAS_HEIGHT) / map.length
+  ) {
     this.X = posX;
     this.Y = posY;
     this.direction = "stop";
@@ -37,5 +41,25 @@ export class Player {
       }
       event.preventDefault();
     });
+  }
+  update() {
+    if (isCollidingWall(this) === false) {
+      switch (this.direction) {
+        case "up":
+          this.Y -= CANVAS_HEIGHT / (map.length * 10);
+          break;
+        case "down":
+          this.Y += CANVAS_HEIGHT / (map.length * 10);
+          break;
+        case "left":
+          this.X -= CANVAS_WIDTH / (map[0].length * 10);
+          break;
+        case "right":
+          this.X += CANVAS_WIDTH / (map[0].length * 10);
+          break;
+        default:
+          break;
+      }
+    }
   }
 }

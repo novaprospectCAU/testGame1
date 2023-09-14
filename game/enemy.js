@@ -1,4 +1,7 @@
+import { CANVAS_WIDTH, CANVAS_HEIGHT } from "../screen.js";
 import { ai_move } from "./ai.js";
+import { map } from "./map.js";
+import { isCollidingWall } from "../utils.js";
 
 const cyanImg1 = new Image();
 cyanImg1.src = "../assets/cyan1.png";
@@ -49,11 +52,15 @@ for (let ghostIdx = 0; ghostIdx < ghostImages.length; ghostIdx++) {
  * every inner things (includes functions, elements) should named "enemy" infront, outside things should named "ghost"
  */
 export class Enemy {
-  HIT_WIDTH = 16;
-  HIT_HEIGHT = 16;
-  IMG_WIDTH = 20;
-  IMG_HEIGHT = 20;
-  constructor(posX = 4, posY = 6, color) {
+  HIT_WIDTH = CANVAS_WIDTH / map[0].length; //HIT_WIDTH and HIT_HEIGHT set same as its size. -> fix sometime
+  HIT_HEIGHT = CANVAS_HEIGHT / map.length;
+  IMG_WIDTH = CANVAS_WIDTH / map[0].length;
+  IMG_HEIGHT = CANVAS_HEIGHT / map.length;
+  constructor(
+    posX = (4 * CANVAS_WIDTH) / map[0].length,
+    posY = (6 * CANVAS_HEIGHT) / map.length,
+    color
+  ) {
     this.X = posX;
     this.Y = posY;
     this.color = color; //color should be one of 0 to 3 (0:cyan, 1:orange, 2:red, 3:pink)
@@ -76,19 +83,19 @@ export class Enemy {
     );
   }
   update() {
-    if (isCollidingWall() === false) {
+    if (isCollidingWall(this) === false) {
       switch (this.direction) {
         case "up":
-          this.Y -= 6;
+          this.Y -= CANVAS_HEIGHT / (map.length * 10);
           break;
         case "down":
-          this.Y += 6;
+          this.Y += CANVAS_HEIGHT / (map.length * 10);
           break;
         case "left":
-          this.X -= 6;
+          this.X -= CANVAS_WIDTH / (map[0].length * 10);
           break;
         case "right":
-          this.X += 6;
+          this.X += CANVAS_WIDTH / (map[0].length * 10);
           break;
         default:
           break;
