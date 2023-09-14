@@ -5,67 +5,99 @@ import { isCollidingWall } from "../utils.js";
 
 const cyanImg1 = new Image();
 cyanImg1.src = "./assets/cyan1.png";
-await cyanImg1.decode();
+await cyanImg1.decode().then(() => {
+  console.log("clear cyan 1");
+});
 
 const cyanImg2 = new Image();
 cyanImg2.src = "./assets/cyan2.png";
-await cyanImg2.decode();
+await cyanImg2.decode().then(() => {
+  console.log("clear cyan 2");
+});
 
 const cyanImg3 = new Image();
 cyanImg3.src = "./assets/cyan3.png";
-await cyanImg3.decode();
+await cyanImg3.decode().then(() => {
+  console.log("clear cyan 3");
+});
 
 const cyanImg4 = new Image();
 cyanImg4.src = "./assets/cyan4.png";
-await cyanImg4.decode();
+await cyanImg4.decode().then(() => {
+  console.log("clear cyan 4");
+});
 
 const orangeImg1 = new Image();
 orangeImg1.src = "./assets/orange1.png";
-await orangeImg1.decode();
+// await orangeImg1.decode().then(() => {
+//   console.log("clear orange 1");
+// });
 
 const orangeImg2 = new Image();
 orangeImg2.src = "./assets/orange2.png";
-await orangeImg2.decode();
+// await orangeImg2.decode().then(() => {
+//   console.log("clear orange 2");
+// });
 
 const orangeImg3 = new Image();
 orangeImg3.src = "./assets/orange3.png";
-await orangeImg3.decode();
+// await orangeImg3.decode().then(() => {
+//   console.log("clear orange 3");
+// });
 
 const orangeImg4 = new Image();
 orangeImg4.src = "./assets/orange4.png";
-await orangeImg4.decode();
+// await orangeImg4.decode().then(() => {
+//   console.log("clear orange 4");
+// });
 
 const redImg1 = new Image();
 redImg1.src = "./assets/red1.png";
-await redImg1.decode();
+// await redImg1.decode().then(() => {
+//   console.log("clear red 1");
+// });
 
 const redImg2 = new Image();
 redImg2.src = "./assets/red2.png";
-await redImg2.decode();
+// await redImg2.decode().then(() => {
+//   console.log("clear red 2");
+// });
 
 const redImg3 = new Image();
 redImg3.src = "./assets/red3.png";
-await redImg3.decode();
+// await redImg3.decode().then(() => {
+//   console.log("clear red 3");
+// });
 
 const redImg4 = new Image();
 redImg4.src = "./assets/red4.png";
-await redImg4.decode();
+// await redImg4.decode().then(() => {
+//   console.log("clear red 4");
+// });
 
 const pinkImg1 = new Image();
 pinkImg1.src = "./assets/pink1.png";
-await pinkImg1.decode();
+// await pinkImg1.decode().then(() => {
+//   console.log("clear pink 1");
+// });
 
 const pinkImg2 = new Image();
 pinkImg2.src = "./assets/pink2.png";
-await pinkImg2.decode();
+// await pinkImg2.decode().then(() => {
+//   console.log("clear pink 2");
+// });
 
 const pinkImg3 = new Image();
 pinkImg3.src = "./assets/pink3.png";
-await pinkImg3.decode();
+// await pinkImg3.decode().then(() => {
+//   console.log("clear pink 3");
+// });
 
 const pinkImg4 = new Image();
 pinkImg4.src = "./assets/pink4.png";
-await pinkImg4.decode();
+// await pinkImg4.decode().then(() => {
+//   console.log("clear pink 4");
+// });
 
 const cyanImages = [cyanImg1, cyanImg2, cyanImg3, cyanImg4];
 const orangeImages = [orangeImg1, orangeImg2, orangeImg3, orangeImg4];
@@ -127,13 +159,21 @@ export class Enemy {
       }
     }
   }
-  draw(frameCount) {
-    const currentImg = ghostImages[this.color][frameCount % 4];
+  draw(context) {
+    let currentImg = ghostImages[this.color][0];
+    if (this.direction === "up") {
+      currentImg = ghostImages[this.color][2];
+    } else if (this.direction === "down") {
+      currentImg = ghostImages[this.color][3];
+    } else if (this.direction === "left") {
+      currentImg = ghostImages[this.color][1];
+    } else {
+      currentImg = ghostImages[this.color][0];
+    }
     context.drawImage(
       currentImg,
       this.X - this.IMG_WIDTH / 2,
-      this,
-      Y - this.IMG_HEIGHT / 2,
+      this.Y - this.IMG_HEIGHT / 2,
       this.IMG_WIDTH,
       this.IMG_HEIGHT
     );

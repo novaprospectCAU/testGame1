@@ -1,28 +1,19 @@
-let ghostX = 4;
-let ghostY = 6;
+import { isCollidingWall } from "../utils.js";
 
-export let before = [ghostX, ghostY];
+let before = [0, 0];
 
-export const ai_move = () => {
+export const ai_move = (object) => {
   while (true) {
-    let nextX = 0;
-    let nextY = 0;
-    if (Math.random() > 0.5) {
-      nextX = Math.floor(Math.random() * 2 - 1);
-      if (nextX === 0) {
-        nextY = Math.floor(Math.random() * 2 - 1);
-        if (nextY === 0) continue;
-      }
-    } else {
-      nextY = Math.floor(Math.random() * 2 - 1);
-      if (nextY === 0) {
-        nextX = Math.floor(Math.random() * 2 - 1);
-        if (nextX === 0) continue;
-      }
+    Math.random() < 0.5
+      ? Math.random() < 0.5
+        ? (object.direction = "up")
+        : (object.direction = "down")
+      : Math.random() < 0.5
+      ? (object.direction = "left")
+      : (object.direction = "right");
+    if (isCollidingWall(object) === true) {
+      continue;
     }
-    before[0] = ghostX;
-    before[1] = ghostY;
-    ghostX += nextX;
-    ghostY += nextY;
+    break;
   }
 };

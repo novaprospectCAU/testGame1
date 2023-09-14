@@ -1,7 +1,8 @@
 import { CANVAS_HEIGHT, CANVAS_WIDTH, ANIMATION_TICK } from "./screen.js";
 import { Player } from "./game/player.js";
 import { Enemy } from "./game/enemy.js";
-import { isColliding } from "./utils.js";
+import { isColliding, update } from "./utils.js";
+import { map } from "./game/map.js";
 
 const canvas = document.querySelector("#game_canvas");
 
@@ -13,18 +14,34 @@ const context = canvas.getContext("2d");
 let frameCount = 0;
 
 export let player = new Player();
-export let cyan = new Enemy(undefined, undefined, 0);
-export let orange = new Enemy(undefined, undefined, 1);
-export let red = new Enemy(undefined, undefined, 2);
-export let pink = new Enemy(undefined, undefined, 3);
+export let cyan = new Enemy(
+  (3 * CANVAS_WIDTH) / map[0].length,
+  (5 * CANVAS_WIDTH) / map.length,
+  0
+);
+export let orange = new Enemy(
+  (3 * CANVAS_WIDTH) / map[0].length,
+  (4 * CANVAS_WIDTH) / map.length,
+  1
+);
+export let red = new Enemy(
+  (2 * CANVAS_WIDTH) / map[0].length,
+  (4 * CANVAS_WIDTH) / map.length,
+  2
+);
+export let pink = new Enemy(
+  (2 * CANVAS_WIDTH) / map[0].length,
+  (5 * CANVAS_WIDTH) / map.length,
+  3
+);
 
 function gameLoop() {
   update(frameCount);
-  player.update(frameCount);
-  cyan.update(frameCount);
-  orange.update(frameCount);
-  red.update(frameCount);
-  pink.update(frameCount);
+  player.update();
+  cyan.update();
+  orange.update();
+  red.update();
+  pink.update();
 
   //gameover when player collides with an enemy
   if (
