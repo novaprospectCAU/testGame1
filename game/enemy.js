@@ -124,17 +124,6 @@ export class Enemy {
     this.status = "ghost";
     this.direction = Math.random() > 0.5 ? "up" : "down"; //for the first time ghosts should move differently from each other
   }
-  draw(context) {
-    const currentImg =
-      ghostImages[this.color][frameCount % ghostImages[this.color].length];
-    context.drawImage(
-      currentImg,
-      this.X,
-      this.Y,
-      this.IMG_WIDTH,
-      this.IMG_HEIGHT
-    );
-  }
   update() {
     if (isCollidingWall(this) === false) {
       switch (this.direction) {
