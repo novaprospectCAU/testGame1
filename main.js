@@ -13,13 +13,6 @@ const context = canvas.getContext("2d");
 
 let frameCount = 0;
 
-console.log("CANVAS_WIDTH = %d", CANVAS_WIDTH);
-console.log("CANVAS_HEIGHT = %d", CANVAS_HEIGHT);
-console.log("width grid = %d", map[0].length);
-console.log("height grid = %d", map.length);
-console.log("width per a block = %d", CANVAS_WIDTH / map[0].length);
-console.log("height per a block = %d", CANVAS_HEIGHT / map.length);
-
 export let player = new Player();
 export let cyan = new Enemy(
   (6 * CANVAS_WIDTH) / map[0].length + CANVAS_WIDTH / map[0].length / 2,
@@ -50,7 +43,11 @@ function gameLoop() {
   pink.update();
 
   for (let coinIdx = 0; coinIdx < coinList.length; coinIdx++) {
-    if (isColliding(player, coinList[coinIdx])) {
+    if (
+      isColliding(player, coinList[coinIdx]) &&
+      coinList[coinIdx].exist === "yes"
+    ) {
+      coinList[coinIdx].toggle();
       updateCoins();
     }
   }
@@ -73,19 +70,6 @@ function gameLoop() {
     return;
   }
 
-  //victory when player collect all the coins
-  // if (coinSum === 0) {
-  //   const gameClear = canvas.getContext("2d");
-  //   const gameClearWidth = canvas.width / 2;
-  //   const gameClearHeight = canvas.height / 2;
-  //   gameClear.textBaseline = "middle";
-  //   gameClear.font = "bold 60px serif";
-  //   gameClear.textAlign = "center";
-  //   gameClear.fillStyle = "blue";
-  //   gameClear.fillText("Victory!!!", gameClearWidth, gameClearHeight);
-  //   return;
-  // }
-
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   for (let y = 0; y < wallList.length; y++) {
@@ -102,6 +86,19 @@ function gameLoop() {
   orange.draw(context);
   red.draw(context);
   pink.draw(context);
+
+  //victory when player collect all the coins
+  if (coinSum === 0) {
+    const gameClear = canvas.getContext("2d");
+    const gameClearWidth = canvas.width / 2;
+    const gameClearHeight = canvas.height / 2;
+    gameClear.textBaseline = "middle";
+    gameClear.font = "bold 60px serif";
+    gameClear.textAlign = "center";
+    gameClear.fillStyle = "cyan";
+    gameClear.fillText("Victory!!!", gameClearWidth, gameClearHeight);
+    return;
+  }
 
   frameCount++;
 
