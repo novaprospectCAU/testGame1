@@ -2,7 +2,6 @@ import { CANVAS_WIDTH, CANVAS_HEIGHT } from "../screen.js";
 import { ai_move } from "./ai.js";
 import { map } from "./map.js";
 import { isCollidingWall } from "../utils.js";
-import { player } from "../main.js";
 
 const cyanImg1 = new Image();
 cyanImg1.src = "./assets/cyan1.png";

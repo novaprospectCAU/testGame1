@@ -46,7 +46,7 @@ export class wall {
 export let wallList = [];
 for (let y = 0; y < map.length; y++) {
   wallList.push([]);
-  for (let x = 0; x < map.length; x++) {
+  for (let x = 0; x < map[0].length; x++) {
     wallList[y].push(new wall(x, y, map[y][x]));
   }
 }
