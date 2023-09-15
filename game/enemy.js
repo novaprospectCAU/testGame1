@@ -128,7 +128,23 @@ export class Enemy {
   update() {
     this.moveCount += 1;
     if (isCollidingWall(this) === false) {
-      if (this.moveCount !== 0 && this.moveCount % 10 === 0) {
+      if (
+        this.X <= CANVAS_WIDTH / map[0].length &&
+        map[Math.floor(this.Y / (CANVAS_HEIGHT / map.length))][
+          this.X / (CANVAS_WIDTH / map[0].length)
+        ] === -1
+      ) {
+          this.direction = "left";
+        }
+        else if (this.X >= CANVAS_WIDTH - CANVAS_WIDTH/map[0].length && map[Math.floor(this.Y / (CANVAS_HEIGHT / map.length))][
+          this.X /
+        ]) {
+
+        }
+        else () {
+
+        }
+      } else if (this.moveCount !== 0 && this.moveCount % 10 === 0) {
         if (Math.random() < 0.2) this.direction = ai_move(this);
         this.moveCount = 0;
       }

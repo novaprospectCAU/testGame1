@@ -35,19 +35,15 @@ export class Player {
       let key = event.key;
       switch (key) {
         case "ArrowDown":
-          this.direction = Math.PI / 2;
           this.direction = "down";
           break;
         case "ArrowUp":
-          this.direction = (3 * Math.PI) / 2;
           this.direction = "up";
           break;
         case "ArrowLeft":
-          this.direction = Math.PI;
           this.direction = "left";
           break;
         case "ArrowRight":
-          this.direction = 0;
           this.direction = "right";
           break;
         default:
