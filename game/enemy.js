@@ -120,12 +120,18 @@ export class Enemy {
   ) {
     this.X = posX;
     this.Y = posY;
+    this.moveCount = 0;
     this.color = color; //color should be one of 0 to 3 (0:cyan, 1:orange, 2:red, 3:pink)
     this.status = "ghost";
     this.direction = Math.random() > 0.5 ? "up" : "down"; //for the first time ghosts should move differently from each other
   }
   update() {
+    this.moveCount += 1;
     if (isCollidingWall(this) === false) {
+      if (this.moveCount !== 0 && this.moveCount % 10 === 0) {
+        if (Math.random() < 0.2) this.direction = ai_move(this);
+        this.moveCount = 0;
+      }
       switch (this.direction) {
         case "up":
           this.Y -= CANVAS_HEIGHT / (map.length * 10);
