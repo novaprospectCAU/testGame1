@@ -48,7 +48,12 @@ function gameLoop() {
   orange.update();
   red.update();
   pink.update();
-  updateCoins();
+
+  for (let coinIdx = 0; coinIdx < coinList.length; coinIdx++) {
+    if (isColliding(player, coinList[coinIdx])) {
+      updateCoins();
+    }
+  }
 
   //gameover when player collides with an enemy
   if (
@@ -91,7 +96,6 @@ function gameLoop() {
 
   for (let i = 0; i < coinList.length; i++) {
     coinList[i].draw(context);
-    console.log("done");
   }
   player.draw(context, frameCount);
   cyan.draw(context);

@@ -66,13 +66,15 @@ coinMap[7] = [0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0];
 coinMap[8] = [0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0];
 coinMap[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 export class coin {
-  COIN_WIDTH = (0.2 * CANVAS_WIDTH) / map[0].length;
-  COIN_HEIGHT = (0.2 * CANVAS_HEIGHT) / map.length;
-  IMG_WIDTH = (0.2 * CANVAS_WIDTH) / map[0].length;
-  IMG_HEIGHT = (0.2 * CANVAS_HEIGHT) / map.length;
+  IMG_WIDTH = (0.4 * CANVAS_WIDTH) / map[0].length;
+  IMG_HEIGHT = (0.4 * CANVAS_HEIGHT) / map.length;
+  HIT_WIDTH = (0.4 * CANVAS_WIDTH) / map[0].length;
+  HIT_HEIGHT = (0.4 * CANVAS_HEIGHT) / map.length;
   constructor(gridX, gridY) {
-    this.X = ((gridX + 1) * CANVAS_WIDTH) / map[0].length;
-    this.Y = ((gridY + 1) * CANVAS_HEIGHT) / map.length;
+    this.X =
+      (gridX * CANVAS_WIDTH) / map[0].length + CANVAS_WIDTH / map[0].length / 2;
+    this.Y =
+      (gridY * CANVAS_HEIGHT) / map.length + CANVAS_HEIGHT / map.length / 2;
     this.exist = "yes";
   }
   draw(context) {
@@ -80,10 +82,10 @@ export class coin {
     const currentImg = coinImg;
     context.drawImage(
       currentImg,
-      this.X - CANVAS_WIDTH / map[0].length / 2,
-      this.Y - CANVAS_HEIGHT / map.length / 2,
-      this.COIN_WIDTH,
-      this.COIN_HEIGHT
+      this.X - (1.3 * this.IMG_WIDTH) / 2,
+      this.Y - (0.78 * this.IMG_HEIGHT) / 2,
+      this.IMG_WIDTH * 1.3,
+      this.IMG_HEIGHT * 0.75
     );
   }
   toggle() {
@@ -106,13 +108,10 @@ export let coinSum = coinList.length;
 export function updateCoins() {
   coinList.filter((obj) => {
     obj.exist === "yes";
-    console.log("done!!!");
   });
   coinSum = coinList.length;
 }
 
-console.log(coinSum);
-console.log(coinList);
 // export coinCollect(player) {
 //   if ()
 // }
