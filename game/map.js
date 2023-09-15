@@ -3,7 +3,7 @@ import { CANVAS_WIDTH, CANVAS_HEIGHT } from "../screen.js";
 export let map = [];
 
 const coinImg = new Image();
-coinImg.src = "./assets/pacMan2.png";
+coinImg.src = "./assets/pacMan0.png";
 
 //0 wall
 //1 ghost zone (not opened yet -> if open it turns into 2)
@@ -65,25 +65,54 @@ coinMap[6] = [0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0];
 coinMap[7] = [0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0];
 coinMap[8] = [0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0];
 coinMap[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+export class coin {
+  COIN_WIDTH = (0.2 * CANVAS_WIDTH) / map[0].length;
+  COIN_HEIGHT = (0.2 * CANVAS_HEIGHT) / map.length;
+  IMG_WIDTH = (0.2 * CANVAS_WIDTH) / map[0].length;
+  IMG_HEIGHT = (0.2 * CANVAS_HEIGHT) / map.length;
+  constructor(gridX, gridY) {
+    this.X = ((gridX + 1) * CANVAS_WIDTH) / map[0].length;
+    this.Y = ((gridY + 1) * CANVAS_HEIGHT) / map.length;
+    this.exist = "yes";
+  }
+  draw(context) {
+    if (this.exist === "no") return;
+    const currentImg = coinImg;
+    context.drawImage(
+      currentImg,
+      this.X - CANVAS_WIDTH / map[0].length / 2,
+      this.Y - CANVAS_HEIGHT / map.length / 2,
+      this.COIN_WIDTH,
+      this.COIN_HEIGHT
+    );
+  }
+  toggle() {
+    this.exist = "no";
+  }
+}
 
-let coinSum = 0;
+export let coinList = [];
 
-for (let y = 1; y < 9; y++) {
-  for (let x = 1; x < 9; x++) {
+for (let y = 0; y < coinMap.length; y++) {
+  for (let x = 0; x < coinMap[0].length; x++) {
     if (coinMap[y][x] === 1) {
-      coinSum++;
+      coinList.push(new coin(x, y));
     }
   }
 }
 
-export function coinDelete(playerX, playerY) {
-  coinMap[playerY][playerX] = 0;
-  coinSum -= 1;
-  if (coinSum === 0) {
-    window.Error("victory!");
-  }
+export let coinSum = coinList.length;
+
+export function updateCoins() {
+  coinList.filter((obj) => {
+    obj.exist === "yes";
+    console.log("done!!!");
+  });
+  coinSum = coinList.length;
 }
 
+console.log(coinSum);
+console.log(coinList);
 // export coinCollect(player) {
 //   if ()
 // }

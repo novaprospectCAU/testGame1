@@ -2,7 +2,7 @@ import { CANVAS_HEIGHT, CANVAS_WIDTH, ANIMATION_TICK } from "./screen.js";
 import { Player } from "./game/player.js";
 import { Enemy } from "./game/enemy.js";
 import { isColliding } from "./utils.js";
-import { map, wallList } from "./game/map.js";
+import { map, wallList, coinList, coinSum, updateCoins } from "./game/map.js";
 
 const canvas = document.querySelector("#game_canvas");
 
@@ -48,6 +48,7 @@ function gameLoop() {
   orange.update();
   red.update();
   pink.update();
+  updateCoins();
 
   //gameover when player collides with an enemy
   if (
@@ -67,12 +68,30 @@ function gameLoop() {
     return;
   }
 
+  //victory when player collect all the coins
+  // if (coinSum === 0) {
+  //   const gameClear = canvas.getContext("2d");
+  //   const gameClearWidth = canvas.width / 2;
+  //   const gameClearHeight = canvas.height / 2;
+  //   gameClear.textBaseline = "middle";
+  //   gameClear.font = "bold 60px serif";
+  //   gameClear.textAlign = "center";
+  //   gameClear.fillStyle = "blue";
+  //   gameClear.fillText("Victory!!!", gameClearWidth, gameClearHeight);
+  //   return;
+  // }
+
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   for (let y = 0; y < wallList.length; y++) {
     for (let x = 0; x < wallList[0].length; x++) {
       wallList[y][x].draw(context);
     }
+  }
+
+  for (let i = 0; i < coinList.length; i++) {
+    coinList[i].draw(context);
+    console.log("done");
   }
   player.draw(context, frameCount);
   cyan.draw(context);
