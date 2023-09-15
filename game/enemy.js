@@ -177,4 +177,19 @@ export class Enemy {
       this.IMG_HEIGHT * 0.75
     );
   }
+  get getX() {
+    return this.X;
+  }
+  get getY() {
+    return this.Y;
+  }
+  get getHitWidth() {
+    return this.HIT_WIDTH;
+  }
+  get getHitHeight() {
+    return this.HIT_HEIGHT;
+  }
+  get getDirection() {
+    return this.direction;
+  }
 }
