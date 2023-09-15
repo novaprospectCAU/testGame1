@@ -2,6 +2,7 @@ import { CANVAS_WIDTH, CANVAS_HEIGHT } from "../screen.js";
 import { ai_move } from "./ai.js";
 import { map } from "./map.js";
 import { isCollidingWall } from "../utils.js";
+import { player } from "../main.js";
 
 const cyanImg1 = new Image();
 cyanImg1.src = "./assets/cyan1.png";
@@ -124,7 +125,7 @@ export class Enemy {
     this.status = "ghost";
     this.direction = Math.random() > 0.5 ? "up" : "down"; //for the first time ghosts should move differently from each other
   }
-  draw(context, frameCount) {
+  draw(context) {
     const currentImg =
       ghostImages[this.color][frameCount % ghostImages[this.color].length];
     context.drawImage(
@@ -154,7 +155,6 @@ export class Enemy {
           break;
       }
     } else {
-      /*asdfasdfasdfasdfasdfasdf*/
       ai_move(this);
     }
   }
@@ -177,19 +177,7 @@ export class Enemy {
       this.IMG_HEIGHT * 0.75
     );
   }
-  get getX() {
-    return this.X;
-  }
-  get getY() {
-    return this.Y;
-  }
-  get getHitWidth() {
-    return this.HIT_WIDTH;
-  }
-  get getHitHeight() {
-    return this.HIT_HEIGHT;
-  }
-  get getDirection() {
+  getDirection() {
     return this.direction;
   }
 }

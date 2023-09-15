@@ -59,38 +59,3 @@ export function isCollidingWall(target) {
       return new Error("unacceptable movement!!!");
   }
 }
-
-//it was made to improve ai movement in intention,
-//but not used
-
-// export function aiHitWallchecker(object) {
-//   const dirArr = ["right", "up", "left", "down"];
-//   class _Checker {
-//     constructor() {
-//       this.X = object.getX();
-//       this.Y = object.getY();
-//       this.HIT_WIDTH = object.getHitWidth();
-//       this.HIT_HEIGHT = object.getHitHeight();
-//       this.direction = object.getDirection();
-//     }
-//     get getDirectionByIndex() {
-//       if (this.direction === "right") {
-//         return 0;
-//       } else if (this.direction === "up") {
-//         return 1;
-//       } else if (this.direction === "left") {
-//         return 2;
-//       } else {
-//         return 3;
-//       }
-//     }
-//   }
-//   let checker = new _Checker();
-//   let dirIndex = checker.getDirectionByIndex();
-
-//   let output = [[], [], [], []];
-//   for (let execCount = 0; execCount < 4; execCount++) {
-//     output[(dirIndex + execCount) % 4].push(isCollidingWall(checker));
-//   }
-//   return output;
-// }
