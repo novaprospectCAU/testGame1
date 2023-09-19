@@ -16,7 +16,6 @@ pacManImg4.src = "./assets/pacMan4.png";
 // await pacManImg1.decode();
 // await pacManImg2.decode();
 
-// const pacManImages = [pacManImg1, pacManImg2];
 
 export class Player {
   HIT_WIDTH = (0.8 * CANVAS_WIDTH) / map[0].length; //HIT_WIDTH and HIT_HEIGHT set same as its size. -> fix sometime
