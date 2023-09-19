@@ -4,3 +4,4 @@ assets/*
 */*.png
 */*.jpeg
 */*.svg
+node_modules/
