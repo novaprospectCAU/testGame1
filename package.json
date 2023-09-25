@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "check": "npm run eslint && npm run prettier"
+    "check": "eslint . && prettier -- check ."
   },
   "author": "",
   "license": "ISC",
