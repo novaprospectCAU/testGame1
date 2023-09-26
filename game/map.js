@@ -27,10 +27,10 @@ map[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 export class wall {
   WALL_WIDTH = CANVAS_WIDTH / map[0].length;
   WALL_HEIGHT = CANVAS_HEIGHT / map.length;
-  constructor(gridX, gridY, num) {
+  constructor(gridX, gridY, number) {
     this.X = (gridX * CANVAS_WIDTH) / map[0].length;
     this.Y = (gridY * CANVAS_HEIGHT) / map.length;
-    this.num = num;
+    this.num = number;
   }
   draw(context) {
     if (this.num === 0 || this.num === 5 || this.num === -2) {
@@ -117,8 +117,8 @@ for (let y = 0; y < coinMap.length; y++) {
 export let coinSum = coinList.length;
 
 export function updateCoins() {
-  coinList.filter((obj) => {
-    obj.exist === "yes";
+  coinList.filter((object) => {
+    object.exist === "yes";
   });
   coinSum -= 1;
 }

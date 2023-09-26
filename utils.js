@@ -59,7 +59,8 @@ export function isCollidingWall(target) {
       }
       return false;
     }
-    default:
+    default: {
       return new Error("unacceptable movement!!!");
+    }
   }
 }
