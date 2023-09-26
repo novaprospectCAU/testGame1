@@ -17,22 +17,22 @@ export let player = new Player();
 export let cyan = new Enemy(
   (6 * CANVAS_WIDTH) / map[0].length + CANVAS_WIDTH / map[0].length / 2,
   (5 * CANVAS_WIDTH) / map.length + CANVAS_HEIGHT / map.length / 2,
-  0
+  0,
 );
 export let orange = new Enemy(
   (6 * CANVAS_WIDTH) / map[0].length + CANVAS_WIDTH / map[0].length / 2,
   (5 * CANVAS_WIDTH) / map.length + CANVAS_HEIGHT / map.length / 2,
-  1
+  1,
 );
 export let red = new Enemy(
   (6 * CANVAS_WIDTH) / map[0].length + CANVAS_WIDTH / map[0].length / 2,
   (5 * CANVAS_WIDTH) / map.length + CANVAS_HEIGHT / map.length / 2,
-  2
+  2,
 );
 export let pink = new Enemy(
   (6 * CANVAS_WIDTH) / map[0].length + CANVAS_WIDTH / map[0].length / 2,
   (5 * CANVAS_WIDTH) / map.length + CANVAS_HEIGHT / map.length / 2,
-  3
+  3,
 );
 
 function gameLoop() {

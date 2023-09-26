@@ -96,7 +96,7 @@ export class coin {
       this.X - (1.3 * this.IMG_WIDTH) / 2,
       this.Y - (0.78 * this.IMG_HEIGHT) / 2,
       this.IMG_WIDTH * 1.3,
-      this.IMG_HEIGHT * 0.75
+      this.IMG_HEIGHT * 0.75,
     );
   }
   toggle() {

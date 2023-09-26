@@ -116,7 +116,7 @@ export class Enemy {
   constructor(
     posX = (4 * CANVAS_WIDTH) / map[0].length + this.IMG_WIDTH / 5,
     posY = (6 * CANVAS_HEIGHT) / map.length + this.IMG_HEIGHT / 5,
-    color
+    color,
   ) {
     this.X = posX;
     this.Y = posY;
@@ -168,7 +168,7 @@ export class Enemy {
       this.X - (1.3 * this.IMG_WIDTH) / 2,
       this.Y - (0.7 * this.IMG_HEIGHT) / 2,
       this.IMG_WIDTH * 1.3,
-      this.IMG_HEIGHT * 0.75
+      this.IMG_HEIGHT * 0.75,
     );
   }
   getDirection() {
