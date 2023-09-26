@@ -16,7 +16,6 @@ pacManImg4.src = "./assets/pacMan4.png";
 // await pacManImg1.decode();
 // await pacManImg2.decode();
 
-
 export class Player {
   HIT_WIDTH = (0.8 * CANVAS_WIDTH) / map[0].length; //HIT_WIDTH and HIT_HEIGHT set same as its size. -> fix sometime
   HIT_HEIGHT = (0.8 * CANVAS_HEIGHT) / map.length;
@@ -24,7 +23,7 @@ export class Player {
   IMG_HEIGHT = (2.5 * CANVAS_HEIGHT) / map.length;
   constructor(
     posX = (5 * CANVAS_WIDTH) / map[0].length + this.IMG_WIDTH / 5,
-    posY = (8 * CANVAS_HEIGHT) / map.length + this.IMG_HEIGHT / 5
+    posY = (8 * CANVAS_HEIGHT) / map.length + this.IMG_HEIGHT / 5,
   ) {
     this.X = posX;
     this.Y = posY;
@@ -83,7 +82,7 @@ export class Player {
         this.X - this.IMG_WIDTH / 2,
         this.Y - this.IMG_HEIGHT / 2,
         this.IMG_WIDTH,
-        this.IMG_HEIGHT
+        this.IMG_HEIGHT,
       );
     } else {
       if (this.direction === "up") {
@@ -102,7 +101,7 @@ export class Player {
         this.X - (1.3 * this.IMG_WIDTH) / 2,
         this.Y - (0.78 * this.IMG_HEIGHT) / 2,
         this.IMG_WIDTH * 1.3,
-        this.IMG_HEIGHT * 0.75
+        this.IMG_HEIGHT * 0.75,
       );
     }
   }
