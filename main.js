@@ -42,12 +42,9 @@ function gameLoop() {
   red.update();
   pink.update();
 
-  for (let coinIdx = 0; coinIdx < coinList.length; coinIdx++) {
-    if (
-      isColliding(player, coinList[coinIdx]) &&
-      coinList[coinIdx].exist === "yes"
-    ) {
-      coinList[coinIdx].toggle();
+  for (const element of coinList) {
+    if (isColliding(player, element) && element.exist === "yes") {
+      element.toggle();
       updateCoins();
     }
   }
@@ -78,8 +75,8 @@ function gameLoop() {
     }
   }
 
-  for (let i = 0; i < coinList.length; i++) {
-    coinList[i].draw(context);
+  for (const element of coinList) {
+    element.draw(context);
   }
   player.draw(context, frameCount);
   cyan.draw(context);

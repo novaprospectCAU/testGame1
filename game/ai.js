@@ -6,11 +6,11 @@ import { CANVAS_WIDTH, CANVAS_HEIGHT } from "../screen.js";
  * ai algorithm : randomly move when it hit the wall
  */
 export const ai_move = (object) => {
-  const dirArr = ["right", "up", "left", "down"];
-  let idx = 0;
-  for (let i = 0; i < 4; i++) {
-    if (dirArr[i] === object.direction) {
-      idx = i;
+  const directions = ["right", "up", "left", "down"];
+  let index = 0;
+  for (let indexDirections = 0; indexDirections < 4; indexDirections++) {
+    if (directions[indexDirections] === object.direction) {
+      index = indexDirections;
     }
   }
   if (
@@ -24,13 +24,13 @@ export const ai_move = (object) => {
     while (true) {
       Math.random() < 0.3
         ? Math.random() < 0.8
-          ? (object.direction = dirArr[idx])
-          : (object.direction = dirArr[(idx + 2) % 4])
+          ? (object.direction = directions[index])
+          : (object.direction = directions[(index + 2) % 4])
         : Math.random() < 0.5
-        ? (object.direction = dirArr[(idx + 1) % 4])
-        : (object.direction = dirArr[(idx + 3) % 4]);
+        ? (object.direction = directions[(index + 1) % 4])
+        : (object.direction = directions[(index + 3) % 4]);
       if (
-        object.direction === dirArr[(idx + 2) % 4] ||
+        object.direction === directions[(index + 2) % 4] ||
         isCollidingWall(object) === true
       ) {
         continue;
@@ -45,13 +45,13 @@ export const ai_move = (object) => {
     while (true) {
       Math.random() < 0.5
         ? Math.random() < 0.5
-          ? (object.direction = dirArr[idx])
-          : (object.direction = dirArr[(idx + 2) % 4])
+          ? (object.direction = directions[index])
+          : (object.direction = directions[(index + 2) % 4])
         : Math.random() < 0.5
-        ? (object.direction = dirArr[(idx + 1) % 4])
-        : (object.direction = dirArr[(idx + 3) % 4]);
+        ? (object.direction = directions[(index + 1) % 4])
+        : (object.direction = directions[(index + 3) % 4]);
       if (
-        object.direction === dirArr[(idx + 2) % 4] ||
+        object.direction === directions[(index + 2) % 4] ||
         isCollidingWall(object) === true
       ) {
         continue;
@@ -62,11 +62,11 @@ export const ai_move = (object) => {
     while (true) {
       Math.random() < 0.5
         ? Math.random() < 0.5
-          ? (object.direction = dirArr[idx])
-          : (object.direction = dirArr[(idx + 2) % 4])
+          ? (object.direction = directions[index])
+          : (object.direction = directions[(index + 2) % 4])
         : Math.random() < 0.5
-        ? (object.direction = dirArr[(idx + 1) % 4])
-        : (object.direction = dirArr[(idx + 3) % 4]);
+        ? (object.direction = directions[(index + 1) % 4])
+        : (object.direction = directions[(index + 3) % 4]);
       if (isCollidingWall(object) === true) {
         continue;
       }

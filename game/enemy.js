@@ -133,20 +133,25 @@ export class Enemy {
         this.moveCount = 0;
       }
       switch (this.direction) {
-        case "up":
+        case "up": {
           this.Y -= CANVAS_HEIGHT / (map.length * 10);
           break;
-        case "down":
+        }
+        case "down": {
           this.Y += CANVAS_HEIGHT / (map.length * 10);
           break;
-        case "left":
+        }
+        case "left": {
           this.X -= CANVAS_WIDTH / (map[0].length * 10);
           break;
-        case "right":
+        }
+        case "right": {
           this.X += CANVAS_WIDTH / (map[0].length * 10);
           break;
-        default:
+        }
+        default: {
           break;
+        }
       }
     } else {
       ai_move(this);
@@ -154,14 +159,22 @@ export class Enemy {
   }
   draw(context) {
     let currentImg = ghostImages[this.color][0];
-    if (this.direction === "up") {
-      currentImg = ghostImages[this.color][2];
-    } else if (this.direction === "down") {
-      currentImg = ghostImages[this.color][3];
-    } else if (this.direction === "left") {
-      currentImg = ghostImages[this.color][0];
-    } else {
-      currentImg = ghostImages[this.color][1];
+    switch (this.direction) {
+      case "up": {
+        currentImg = ghostImages[this.color][2];
+        break;
+      }
+      case "down": {
+        currentImg = ghostImages[this.color][3];
+        break;
+      }
+      case "left": {
+        currentImg = ghostImages[this.color][0];
+        break;
+      }
+      default: {
+        currentImg = ghostImages[this.color][1];
+      }
     }
     context.drawImage(
       currentImg,

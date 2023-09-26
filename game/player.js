@@ -32,22 +32,26 @@ export class Player {
     window.addEventListener("keydown", (event) => {
       let key = event.key;
       switch (key) {
-        case "ArrowDown":
+        case "ArrowDown": {
           this.direction = Math.PI / 2;
           this.direction = "down";
           break;
-        case "ArrowUp":
+        }
+        case "ArrowUp": {
           this.direction = (3 * Math.PI) / 2;
           this.direction = "up";
           break;
-        case "ArrowLeft":
+        }
+        case "ArrowLeft": {
           this.direction = Math.PI;
           this.direction = "left";
           break;
-        case "ArrowRight":
+        }
+        case "ArrowRight": {
           this.direction = 0;
           this.direction = "right";
           break;
+        }
         default:
       }
       event.preventDefault();
@@ -56,20 +60,25 @@ export class Player {
   update() {
     if (isCollidingWall(this) === false) {
       switch (this.direction) {
-        case "up":
+        case "up": {
           this.Y -= CANVAS_HEIGHT / (map.length * 10);
           break;
-        case "down":
+        }
+        case "down": {
           this.Y += CANVAS_HEIGHT / (map.length * 10);
           break;
-        case "left":
+        }
+        case "left": {
           this.X -= CANVAS_WIDTH / (map[0].length * 10);
           break;
-        case "right":
+        }
+        case "right": {
           this.X += CANVAS_WIDTH / (map[0].length * 10);
           break;
-        default:
+        }
+        default: {
           break;
+        }
       }
     }
   }
@@ -85,16 +94,30 @@ export class Player {
         this.IMG_HEIGHT,
       );
     } else {
-      if (this.direction === "up") {
-        currentImg = pacManImg3;
-      } else if (this.direction === "down") {
-        currentImg = pacManImg4;
-      } else if (this.direction === "left") {
-        currentImg = pacManImg1;
-      } else if (this.direction === "right") {
-        currentImg = pacManImg2;
-      } else {
-        currentImg = pacManImg2;
+      switch (this.direction) {
+        case "up": {
+          currentImg = pacManImg3;
+
+          break;
+        }
+        case "down": {
+          currentImg = pacManImg4;
+
+          break;
+        }
+        case "left": {
+          currentImg = pacManImg1;
+
+          break;
+        }
+        case "right": {
+          currentImg = pacManImg2;
+
+          break;
+        }
+        default: {
+          currentImg = pacManImg2;
+        }
       }
       context.drawImage(
         currentImg,
