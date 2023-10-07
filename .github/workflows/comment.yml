@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: peter-evans/create-or-update-comment@v3
         with:
-          issue-number: ${{ github.event.issue.id }}
+          issue-number: ${{ github.event.issue.number }}
           body: |
             안녕하세요. 버그를 알려주셔서 감사합니다.
             빨리 확인한 후 처리하겠습니다.
