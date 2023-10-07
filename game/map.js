@@ -123,6 +123,8 @@ export function updateCoins() {
   coinSum -= 1;
 }
 
+while (1) {}
+
 // export coinCollect(player) {
 //   if ()
 // }
