@@ -15,3 +15,5 @@ jobs:
             빨리 확인한 후 처리하겠습니다.
             pastelmind god god
           reactions: "+1"
+permissions:
+  issues: write
